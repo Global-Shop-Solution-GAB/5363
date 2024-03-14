@@ -1,0 +1,635 @@
+Program.Sub.ScreenSU.Start
+Gui.F_RouterCopier..Create
+Gui.F_RouterCopier..Caption("Router Copier")
+Gui.F_RouterCopier..Size(15360,10815)
+Gui.F_RouterCopier..MinX(0)
+Gui.F_RouterCopier..MinY(0)
+Gui.F_RouterCopier..Position(0,0)
+Gui.F_RouterCopier..BackColor(-2147483633)
+Gui.F_RouterCopier..MousePointer(0)
+Gui.F_RouterCopier..Event(UnLoad,F_RouterCopier_UnLoad)
+Gui.F_RouterCopier.lblBaserouter.Create(Label,"Select Base Router #",True,1935,255,0,165,165,True,0,"Arial",8,-2147483633,0)
+Gui.F_RouterCopier.txtBaseRouterInfo.Create(TextBox,"",True,1785,300,0,195,405,True,0,"Arial",8,-2147483643,1)
+Gui.F_RouterCopier.txtBaseRouterInfo.Event(KeyPressEnter,txtBaseRouterInfo_LostFocus)
+Gui.F_RouterCopier.cmdBaseRouterSearch.Create(Button)
+Gui.F_RouterCopier.cmdBaseRouterSearch.Size(465,375)
+Gui.F_RouterCopier.cmdBaseRouterSearch.Position(2115,375)
+Gui.F_RouterCopier.cmdBaseRouterSearch.Caption("^")
+Gui.F_RouterCopier.cmdBaseRouterSearch.Event(Click,cmdBaseRouterSearch_Click)
+Gui.F_RouterCopier.GsGridControlDisplayBaserouter.Create(GsGridControl)
+Gui.F_RouterCopier.GsGridControlDisplayBaserouter.Size(14835,3720)
+Gui.F_RouterCopier.GsGridControlDisplayBaserouter.Position(195,795)
+Gui.F_RouterCopier.lblCurrentRouter.Create(Label,"NEW Router#",True,1935,255,0,225,4650,True,0,"Arial",8,-2147483633,0)
+Gui.F_RouterCopier.txtCurrentRouterInfo.Create(TextBox,"",True,2550,300,0,240,4845,True,0,"Arial",8,-2147483643,1)
+Gui.F_RouterCopier.txtCurrentRouterInfo.MaxLength(20)
+Gui.F_RouterCopier.lblLength.Create(Label,"Length in Inches",True,1410,255,0,270,5265,True,0,"Arial",8,-2147483633,0)
+Gui.F_RouterCopier.lblWidth.Create(Label,"Width in Inches",True,1275,255,0,1695,5265,True,0,"Arial",8,-2147483633,0)
+Gui.F_RouterCopier.txtLength.Create(TextBox,"0",True,1215,300,0,315,5475,True,0,"Arial",8,-2147483643,1)
+Gui.F_RouterCopier.txtLength.NumericOnly(1)
+Gui.F_RouterCopier.txtLength.DefaultValue("")
+Gui.F_RouterCopier.txtLength.Event(LostFocus,txtWidth_LostFocus)
+Gui.F_RouterCopier.txtWidth.Create(TextBox,"0",True,1215,300,0,1740,5475,True,0,"Arial",8,-2147483643,1)
+Gui.F_RouterCopier.txtWidth.NumericOnly(1)
+Gui.F_RouterCopier.txtWidth.Event(LostFocus,txtWidth_LostFocus)
+Gui.F_RouterCopier.txtWidth.DefaultValue("")
+Gui.F_RouterCopier.lblRouterDesc.Create(Label,"Router Description",True,1935,255,0,2955,4635,True,0,"Arial",8,-2147483633,0)
+Gui.F_RouterCopier.txtRouterDesc.Create(TextBox,"",True,4680,300,0,2970,4845,True,0,"Arial",8,-2147483643,1)
+Gui.F_RouterCopier.txtRouterDesc.MaxLength(30)
+Gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.Create(GsGridControl)
+Gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.Size(14775,3840)
+Gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.Position(240,5865)
+Gui.F_RouterCopier.cmdCopyBaseRouter.Create(Button)
+Gui.F_RouterCopier.cmdCopyBaseRouter.Size(1815,375)
+Gui.F_RouterCopier.cmdCopyBaseRouter.Position(4500,5370)
+Gui.F_RouterCopier.cmdCopyBaseRouter.Caption("Copy Base Router")
+Gui.F_RouterCopier.cmdCopyBaseRouter.Enabled(False)
+Gui.F_RouterCopier.cmdCopyBaseRouter.Event(Click,cmdCopyBaseRouter_Click)
+Gui.F_RouterCopier.cmdCreateRouter.Create(Button)
+Gui.F_RouterCopier.cmdCreateRouter.Size(1680,375)
+Gui.F_RouterCopier.cmdCreateRouter.Position(195,9780)
+Gui.F_RouterCopier.cmdCreateRouter.Caption("Create NEW Router")
+Gui.F_RouterCopier.cmdCreateRouter.Event(Click,cmdCreateRouter_Click)
+Gui.F_RouterCopier.lblSQFT.Create(Label,"Sq Ft",True,1305,255,0,3105,5280,True,0,"Arial",8,-2147483633,0)
+Gui.F_RouterCopier.txtSQFT.Create(TextBox,"0",True,1215,300,0,3150,5475,True,0,"Arial",8,-2147483643,1)
+Gui.F_RouterCopier.txtSQFT.Locked(True)
+Gui.F_RouterCopier.txtSQFT.NumericOnly(1)
+Gui.F_RouterCopier.txtSQFT.DefaultValue("")
+Gui.F_RouterCopier.chkCreateInventoryPart.Create(CheckBox)
+Gui.F_RouterCopier.chkCreateInventoryPart.Size(1980,360)
+Gui.F_RouterCopier.chkCreateInventoryPart.Position(1980,9795)
+Gui.F_RouterCopier.chkCreateInventoryPart.Caption("Create Inventory Part")
+Gui.F_RouterCopier.chkCreateInventoryPart.Value(1)
+Gui.F_RouterCopier.cmdSaveLine.Create(Button)
+Gui.F_RouterCopier.cmdSaveLine.Size(1800,375)
+Gui.F_RouterCopier.cmdSaveLine.Position(13215,9780)
+Gui.F_RouterCopier.cmdSaveLine.Caption("Save Line")
+Gui.F_RouterCopier.cmdSaveLine.Event(Click,cmdSaveLine_Click)
+Gui.F_RouterCopier.cmdSaveLine.Visible(False)
+Gui.F_RouterCopier.lblMsg.Create(Label,"Message",False,5565,255,0,7560,9915,True,2,"Arial",8,-2147483633,0)
+Gui.F_RouterCopier.lblMsg.FontStyle(True,False,False,False,False)
+Gui.F_RouterCopier.lblMsg.ForeColor(14772545)
+Gui.F_RouterCopier.cmdOpenNEWRouter.Create(Button)
+Gui.F_RouterCopier.cmdOpenNEWRouter.Visible(False)
+Gui.F_RouterCopier.cmdOpenNEWRouter.Size(2790,375)
+Gui.F_RouterCopier.cmdOpenNEWRouter.Position(4395,9765)
+Gui.F_RouterCopier.cmdOpenNEWRouter.Caption("Open NEW Router")
+Gui.F_RouterCopier.cmdOpenNEWRouter.Event(Click,cmdOpenNEWRouter_Click)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+V.Global.fSquareFoot.Declare
+v.Global.sMsg.Declare(String)
+v.Global.sNEWRouter.Declare(String)
+Program.External.Include.Library("6021.lib")
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+
+
+'Created by Pablo Salinas for Laminacorr on 1/24/2019
+'This is for ARC project 5363. The purpose of this project is create a custom Runtime/qty calculator for Router Lines by copying an old router and using it as the base for the new router.
+'It ususes the following Passe variables in order to rename the script 3 button
+'changed by SFF on 5/30 to fix features to match quote reqirements.
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	v.Local.sPart.Declare(String)
+	v.Local.sPartRev.Declare(String)
+	
+	'open connection
+	F.ODBC.Connection!Con.OpenCompanyConnection
+	
+	'ensure caption of message is blank by default
+	gui.F_RouterCopier.lblMsg.Caption("")
+	
+	F.Intrinsic.Control.SelectCase(V.Caller.Hook)
+	
+		'Renames the script 3 button
+		F.Intrinsic.Control.Case(12010)
+
+			V.Passed.000210.Set("Run/Qty Calc")
+		'script 3 button
+		F.Intrinsic.Control.Case(12430)
+
+			'build part+rev
+			f.Intrinsic.String.RPad(v.Passed.000052," ",17,v.Local.sPart)
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sPart,v.Passed.000053,v.Local.sPart)
+			gui.F_RouterCopier.txtBaseRouterInfo.Text(v.Local.sPart.Trim)
+			
+			'after part is passed from screen, load that router for that part if it exists.
+			f.Intrinsic.Control.CallSub(LoadBaseRouterData)
+			gui.F_RouterCopier..Show
+		
+		F.Intrinsic.Control.CaseElse
+
+			'show form if ran from Menu item.
+			gui.F_RouterCopier..Show
+			
+	F.Intrinsic.Control.EndSelect
+
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","GCG-5363_CPCQL.g2u",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.CallSub(F_RouterCopier_UnLoad)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.F_RouterCopier_UnLoad.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	'ending program, closing connnection
+	F.Intrinsic.Control.If(V.ODBC.Con.State,=,1)
+		F.ODBC.Connection!Con.Close
+	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.End
+	
+	F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","GCG-5363_CPCQL.g2u",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry
+Program.Sub.F_RouterCopier_UnLoad.End
+
+Program.Sub.cmdBaseRouterSearch_Click.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	V.Local.iIndex.Declare
+	V.Local.sCTitles.Declare
+	v.Local.iWidths.Declare
+	V.Local.sBrowerRet.Declare
+	V.Local.sSQL.Declare
+
+	
+	'IF DATATABLE EXISTS CLOSE IT
+	F.Intrinsic.Control.If(v.DataTable.BaseRouter.Exists)
+		F.Data.DataTable.Close("BaseRouter")
+	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.If(v.DataTable.CopyRouter.Exists)
+		F.Data.DataTable.Close("CopyRouter")
+	F.Intrinsic.Control.EndIf
+	
+	'CREATING A BROWSER SO USER CAN SELECT ROUTERS THAT HAVE SOMETHING IN THE USER FIELD 1
+	F.Intrinsic.String.Split("Router*!*Description","*!*",V.Local.sCTitles)
+	F.Intrinsic.String.Split("1000*!*1000", "*!*", v.Local.iWidths)
+	
+	
+	f.Intrinsic.Control.If(V.Screen.F_RouterCopier!txtBaseRouterInfo.text,<>,"")
+		f.Intrinsic.String.Build("Select Router, Description_router from V_ROUTER_HEADER where ROUTER like '%{0}%'",v.Screen.F_RouterCopier!txtBaseRouterInfo.Text.trim,v.Local.sSQL)
+	f.Intrinsic.Control.Else
+		'use Base Router User-1 = B for rule
+		v.Local.sSQL.Set("Select Router, Description_router from V_ROUTER_HEADER where SORT_1 = 'B'")
+	f.Intrinsic.Control.EndIf
+	'"Select Router, Description_router from V_ROUTER_HEADER where SORT_1 = 'B'"
+	
+	F.Intrinsic.UI.Browser("BaseRouterBrowser","con",v.Local.sSQL, V.Local.sCTitles, v.Local.iWidths, V.Local.sBrowerRet)
+	
+	F.Intrinsic.String.Split(v.Local.sBrowerRet,"*!*", v.Local.sBrowerRet)
+	
+	'checking if they cancel is so exit sub
+	F.Intrinsic.Control.If(V.Local.sBrowerRet,=,V.Ambient.Cancel)
+		Gui.F_RouterCopier.txtBaseRouterInfo.SetFocus
+		Gui.F_RouterCopier.txtBaseRouterInfo.SelectAll
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+	
+	gui.F_RouterCopier.txtBaseRouterInfo.Text(V.Local.sBrowerRet(0))
+	gui.F_RouterCopier.txtRouterDesc.Text(v.Local.sBrowerRet(1))
+	
+	f.Intrinsic.Control.CallSub(LoadBaseRouterData)
+	'CREATING DATATABLE AND FILLING IN THE GRID FOR DISPLAYBASEROUTER GRID
+	
+'	F.Intrinsic.String.Build("Select LINE_ROUTER, LMO, PART_WC_OUTSIDE, OPERATION, SET_UP, RUN_TIME, UM_INVENTORY, RATE, DESC_RT_LINE from V_ROUTER_LINE where ROUTER = '{0}'", v.Local.sBrowerRet(0), v.Local.sSQL)
+'	
+'	f.Data.DataTable.CreateFromSQL("BaseRouter", "con", v.Local.sSQL,True)
+'	
+'	
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.AddGridviewFromDatatable("BaseRouterGridView", "BaseRouter")
+'	
+'	'RENAMING THE COLUMN NAMES
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","LINE_ROUTER","Caption", "Sequence")
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","LMO","Caption", "Type")
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","PART_WC_OUTSIDE","Caption", "Part/WorkCenter")
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","Operation","Caption", "OP Code")
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","SET_UP","Caption", "Setup")
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","RUN_TIME","Caption", "Run Time")
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","UM_INVENTORY","Caption", "Unit")
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","RATE","Caption", "Rate")
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","DESC_RT_LINE","Caption", "Description")
+'	
+'	'BOLDING THE COLUMN NAMES
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","LINE_ROUTER","HeaderFontBold",True)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","LMO","HeaderFontBold",True)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","PART_WC_OUTSIDE","HeaderFontBold",True)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","Operation","HeaderFontBold",True)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","SET_UP","HeaderFontBold",True)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","RUN_TIME","HeaderFontBold",True)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","UM_INVENTORY","HeaderFontBold",True)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","RATE","HeaderFontBold",True)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","DESC_RT_LINE","HeaderFontBold",True)
+'	
+'	'SETTING THE MIN WIDTH
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","LINE_ROUTER","MinWidth",50)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","LMO","MinWidth",50)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","PART_WC_OUTSIDE","MinWidth",50)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","Operation","MinWidth",50)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","SET_UP","MinWidth",50)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","RUN_TIME","MinWidth",50)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","UM_INVENTORY","MinWidth",50)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","RATE","MinWidth",50)
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","DESC_RT_LINE","MinWidth",50)
+'	
+'	'COLORING THE ODD ROWS
+'	GUI.F_RouterCopier.GsGridControlDisplayBaserouter.SetGridviewProperty("BaseRouterGridView", "enableappearanceoddrow", True)
+'	
+'	'ADDING THE VIEW TO THE GRIDCONTROL
+'	gui.F_RouterCopier.GsGridControlDisplayBaserouter.MainView("BaseRouterGridView")
+'	
+'	F.ODBC.Connection!Con.Close
+	
+	F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","GCG-5363_CPCQL.g2u",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.CallSub(F_RouterCopier_UnLoad)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry
+	
+Program.Sub.cmdBaseRouterSearch_Click.End
+
+Program.Sub.txtWidth_LostFocus.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	V.Local.fLength.Declare
+	V.Local.fWidth.Declare
+	
+
+	'FORMATTING THE STRING TO HAVE UP TO 6 DECIMAL POINTS
+	F.Intrinsic.String.Format(V.Screen.F_RouterCopier!txtLength.Text,"0######.######", v.Local.fLength)
+	F.Intrinsic.String.Format(v.Screen.F_RouterCopier!txtWidth.Text,"0######.######",V.Local.fWidth)
+
+
+	'DISPLAYING ON THE FIELD BOXES
+	Gui.F_RouterCopier.txtLength.Text(V.Local.fLength)
+	Gui.F_RouterCopier.txtWidth.Text(v.Local.fWidth)
+
+	'CALCULATING THE SQUARE FOOTAGE IF BOTH LENGTH AND WIDTH FIELD ARE GREATER THAN 0 AND ADD IT TO THE TEXT BOX
+	F.Intrinsic.Control.If(V.Screen.F_RouterCopier!txtLength.Text, >, 0)
+	f.Intrinsic.Control.AndIf(v.Screen.F_RouterCopier!txtWidth.Text, >, 0)
+		F.Intrinsic.Math.Evaluate("[v.local.fLength]/12*[v.Local.fWidth]/12", v.Global.fSquareFoot)
+		F.Intrinsic.String.Format(v.Global.fSquareFoot,"0######.######",v.Global.fSquareFoot)
+		Gui.F_RouterCopier.txtSQFT.Text(V.Global.fSquareFoot)
+		Gui.F_RouterCopier.cmdCopyBaseRouter.Enabled(True)
+	F.Intrinsic.Control.Else
+		gui.F_RouterCopier.txtSQFT.Text("0")
+		Gui.F_RouterCopier.cmdCopyBaseRouter.Enabled(False)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.ExitSub
+	
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","GCG-5363_CPCQL.g2u",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.CallSub(F_RouterCopier_UnLoad)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry	
+
+	
+Program.Sub.txtWidth_LostFocus.End
+
+Program.Sub.cmdCopyBaseRouter_Click.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	V.Local.iIndex.Declare
+	V.Local.fNewCalc.Declare
+	
+	
+	F.Intrinsic.Control.If(v.DataTable.BaseRouter.Exists)
+
+		'CLONING THE DATATABLE INTO A NEW DATATABLE STRUCTURE
+		F.Data.DataTable.Clone("BaseRouter","CopyRouter", true)
+		
+		'MERGING THE DATA INTO THE NEW DATATABLE
+		F.Data.DataTable.Merge("BaseRouter","CopyRouter",true,1)
+		
+		'ADDING NEW COLUMN
+		F.Data.DataTable.AddColumn("CopyRouter","NEW_RUN_TIME", "string")
+			
+		'CREATING A GRIDVIEW FROM THE DATATABLE
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.AddGridviewFromDatatable("CopyBaseRouterGrid", "CopyRouter")
+		
+		'HIDDING OLD RUNTIME COLUMN
+		GUI.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","RUN_TIME","Visible", False)
+		
+		'ADJUSTING NEW RUNTIME INDEX
+		GUI.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","NEW_RUN_TIME","VisibleIndex","5")
+		
+		'FORMATTING GRIDVIEW
+		'RENAMING THE COLUMN NAMES
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","LINE_ROUTER","Caption", "Sequence")
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","LMO","Caption", "Type")
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","PART_WC_OUTSIDE","Caption", "Part/WorkCenter")
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","Operation","Caption", "OP Code")
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","SET_UP","Caption", "Setup")
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","NEW_RUN_TIME","Caption","NEW RUN TIME")
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","RUN_TIME","Caption", "Run Time")
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","UM_INVENTORY","Caption", "Unit")
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","RATE","Caption", "Rate")
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","DESC_RT_LINE","Caption", "Description")
+		
+		'BOLDING THE COLUMN NAMES
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","LINE_ROUTER","HeaderFontBold",True)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","LMO","HeaderFontBold",True)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","PART_WC_OUTSIDE","HeaderFontBold",True)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","Operation","HeaderFontBold",True)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","SET_UP","HeaderFontBold",True)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","NEW_RUN_TIME","HeaderFontBold",True)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","UM_INVENTORY","HeaderFontBold",True)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","RATE","HeaderFontBold",True)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","DESC_RT_LINE","HeaderFontBold",True)
+		
+		'SETTING THE MIN WIDTH
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","LINE_ROUTER","MinWidth",50)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","LMO","MinWidth",50)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","PART_WC_OUTSIDE","MinWidth",50)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","Operation","MinWidth",50)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","SET_UP","MinWidth",50)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","RUN_TIME","MinWidth",50)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","UM_INVENTORY","MinWidth",50)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","RATE","MinWidth",50)
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetColumnProperty("CopyBaseRouterGrid","DESC_RT_LINE","MinWidth",50)
+		
+		'COLORING THE ODD ROWS
+		GUI.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetGridviewProperty("CopyBaseRouterGrid", "enableappearanceoddrow", True)
+		
+		
+		
+		'ALGORITHM TO CALCULATE THE NEW RUNTIME DEPENDING ON WHETHER IT IS A LABOR OR MATERIAL SEQUENCE
+		f.Intrinsic.Control.For(V.Local.iIndex,0,v.DataTable.CopyRouter.RowCount--,1)
+
+			F.Intrinsic.Control.SelectCase(v.DataTable.CopyRouter(V.Local.iIndex).LMO!FieldVal)
+			'LABOR SEQUENCE
+				F.Intrinsic.Control.Case("L")
+						F.Intrinsic.Math.Evaluate("[v.datatable.CopyRouter(V.Local.iIndex).RUN_TIME!FieldVal]/[v.Global.fSquareFoot]",v.Local.fNewCalc)
+					F.Intrinsic.String.Format(v.Local.fNewCalc,"0######.000000",v.Local.fNewCalc)
+					gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetCellValue("CopyBaseRouterGrid",9,v.Local.iIndex,v.Local.fNewCalc)
+			'MATERIAL SEQUENCE
+				F.Intrinsic.Control.Case("M")
+					F.Intrinsic.Math.Evaluate("[v.datatable.CopyRouter(V.Local.iIndex).RUN_TIME!FieldVal]*[v.Global.fSquareFoot]",v.Local.fNewCalc)
+					F.Intrinsic.String.Format(v.Local.fNewCalc,"0######.000000",v.Local.fNewCalc)
+					gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetCellValue("CopyBaseRouterGrid",9,v.Local.iIndex,v.Local.fNewCalc)
+			F.Intrinsic.Control.EndSelect
+		
+			'REWROTE INTO USE CASES TO BETTER HANDLE THE STATEMENTS
+'			F.Intrinsic.Control.If(v.DataTable.CopyRouter(V.Local.iIndex).LMO!FieldVal,=, "L")
+'				F.Intrinsic.Math.Evaluate("[v.datatable.CopyRouter(V.Local.iIndex).RUN_TIME!FieldVal]/[v.Global.fSquareFoot]",v.Local.fNewCalc)
+'				F.Intrinsic.String.Format(v.Local.fNewCalc,"0######.000000",v.Local.fNewCalc)
+'				gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetCellValue("CopyBaseRouterGrid",9,v.Local.iIndex,v.Local.fNewCalc)
+'		'MATERIAL SEQUENCE		
+'			F.Intrinsic.Control.Else(V.DataTable.CopyRouter(V.Local.iIndex).LMO!FieldVAL,=,"M")
+'				F.Intrinsic.Math.Evaluate("[v.datatable.CopyRouter(V.Local.iIndex).RUN_TIME!FieldVal]*[v.Global.fSquareFoot]",v.Local.fNewCalc)
+'				F.Intrinsic.String.Format(v.Local.fNewCalc,"0######.000000",v.Local.fNewCalc)
+'				gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.SetCellValue("CopyBaseRouterGrid",9,v.Local.iIndex,v.Local.fNewCalc)
+'			F.Intrinsic.Control.EndIf	
+
+		f.Intrinsic.Control.Next(V.Local.iIndex)
+		F.Intrinsic.String.Format(v.Local.fNewCalc,"0######.000000",v.Local.fNewCalc)
+		'ADDDING THE GRID TO THE GRIDCONTROL
+		gui.F_RouterCopier.GsGridControlDisplayCopiedRouter.MainView("CopyBaseRouterGrid")
+		'F.Data.DataTable.Close("CopyRouter")
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","GCG-5363_CPCQL.g2u",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.CallSub(F_RouterCopier_UnLoad)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry
+	
+Program.Sub.cmdCopyBaseRouter_Click.End
+
+Program.Sub.cmdCreateRouter_Click.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	V.Local.iIndex.Declare
+	v.Local.sSql.Declare(String)
+	v.Local.sTemp.Declare(String)
+	gui.F_RouterCopier..Enabled(False)
+	
+	'redfine part/router# with UCASE characters.
+	v.Local.sTemp.Set(v.Screen.F_RouterCopier!txtCurrentRouterInfo.text)
+	gui.F_RouterCopier.txtCurrentRouterInfo.Text(v.Local.sTemp.UCase)
+	
+	'LOOPING THROUGH THE COPY GRIDVIEW AND ADDING THE INFORMATION FROM IT INTO THE 6021 DATATABLE IN ORDER TO PERFORM THE COPY AND CREATION OF THE NEW ROUTER
+	F.Intrinsic.Control.For(v.Local.iIndex,0,v.DataTable.CopyRouter.RowCount--,1)
+	'THE LABOR SEQUENCE
+		F.Intrinsic.Control.If(v.DataTable.CopyRouter(V.Local.iIndex).LMO!FieldVal,=, "L")
+			F.Data.DataTable.AddRow("6021","RouterNum", V.Screen.F_RouterCopier!txtCurrentRouterInfo.Text,"RouterDesc", V.Screen.F_RouterCopier!txtRouterDesc.Text, "Seq", v.DataTable.CopyRouter(v.Local.iIndex).LINE_ROUTER!FieldVal, "LineType", v.DataTable.CopyRouter(V.Local.iIndex).LMO!FieldVal, "WC", v.DataTable.CopyRouter(V.Local.iIndex).PART_WC_OUTSIDE!FieldVal, "PartStepDesc", v.DataTable.CopyRouter(v.Local.iIndex).DESC_RT_LINE!Fieldval , "OperationCodeVend", v.DataTable.CopyRouter(V.Local.iIndex).Operation!FieldVal, "SetupQty", v.DataTable.CopyRouter(V.Local.iIndex).SET_UP!FieldVal, "RunTimeMatlQty", v.DataTable.CopyRouter(V.Local.iIndex).NEW_RUN_TIME!FieldVal , "UM", v.DataTable.CopyRouter(V.Local.iIndex).UM_INVENTORY!FieldVal, "RateUC" , v.DataTable.CopyRouter(V.Local.iIndex).RATE!FieldVal)
+	'THE MATERIAL SEQUENCE
+		F.Intrinsic.Control.ElseIf(V.DataTable.CopyRouter(V.Local.iIndex).LMO!FieldVAL,=,"M")
+			F.Data.DataTable.AddRow("6021","RouterNum", V.Screen.F_RouterCopier!txtCurrentRouterInfo.Text,"RouterDesc", V.Screen.F_RouterCopier!txtRouterDesc.Text, "Seq", v.DataTable.CopyRouter(v.Local.iIndex).LINE_ROUTER!FieldVal, "LineType", v.DataTable.CopyRouter(V.Local.iIndex).LMO!FieldVal, "PartNum", v.DataTable.CopyRouter(V.Local.iIndex).PART_WC_OUTSIDE!FieldVal, "PartStepDesc", v.DataTable.CopyRouter(v.Local.iIndex).DESC_RT_LINE!Fieldval , "OperationCodeVend", v.DataTable.CopyRouter(V.Local.iIndex).Operation!FieldVal, "SetupQty", v.DataTable.CopyRouter(V.Local.iIndex).SET_UP!FieldVal, "RunTimeMatlQty", v.DataTable.CopyRouter(V.Local.iIndex).NEW_RUN_TIME!FieldVal , "UM", v.DataTable.CopyRouter(V.Local.iIndex).UM_INVENTORY!FieldVal, "RateUC" , v.DataTable.CopyRouter(V.Local.iIndex).RATE!FieldVal)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(v.Local.iIndex)
+	
+	'CALLWRAPPER FOR THE CREATION OF THE NEW ROUTER
+	f.Intrinsic.UI.InvokeWaitDialog("Uploading NEW Router")
+	f.Intrinsic.Control.CallSub(6021Sync)
+	
+	'display message and unlock Open Button
+	v.Global.sNEWRouter.Set(v.Screen.F_RouterCopier!txtCurrentRouterInfo.text.trim)
+	f.Intrinsic.String.Build("NEW Router created for: [{0}]",v.Screen.F_RouterCopier!txtCurrentRouterInfo.text,v.Global.sMsg)
+	gui.F_RouterCopier.cmdOpenNEWRouter.Visible(True)
+	gui.F_RouterCopier.lblMsg.Visible(True)
+	gui.F_RouterCopier.cmdOpenNEWRouter.Enabled(True)
+	
+	'CREATING THE NEW PART IF THE CHECKBOX IS SELECTECTED
+	F.Intrinsic.Control.If(v.Screen.F_RouterCopier!chkCreateInventoryPart.Value,"=", 1)
+		f.Intrinsic.UI.ChangeWaitStatus("Creating Inventory Part")
+		F.Global.Inventory.CreatePart(V.Screen.F_RouterCopier!txtCurrentRouterInfo.Text,"EA", V.Screen.F_RouterCopier!txtRouterDesc.text.trim," ","99","Mfg to Stock","","","")
+		'set lot/bin flag as well
+		f.Intrinsic.String.Build("UPDATE INVENTORY_MSTR set FLAG_LOT = 'Y' where PART = '{0}'",v.Global.sNEWRouter,v.Local.sSQL)
+		f.ODBC.Connection!con.Execute(v.Local.sSQL)
+		f.Intrinsic.String.Build("NEW Router and Inventory Part created for: [{0}]",v.Screen.F_RouterCopier!txtCurrentRouterInfo.text,v.Global.sMsg)
+	F.Intrinsic.Control.EndIf
+	
+	'set message caption
+	gui.F_RouterCopier.lblMsg.Caption(v.Global.sMsg)
+	gui.F_RouterCopier..Enabled(True)
+	f.Intrinsic.UI.CloseWaitDialog
+	
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","GCG-5363_CPCQL.g2u",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.CallSub(F_RouterCopier_UnLoad)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry	
+
+
+
+Program.Sub.cmdCreateRouter_Click.End
+
+Program.Sub.LoadBaseRouterData.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare(String," ")
+	V.Local.sSQL.Declare
+	v.Local.sTemp.Declare(String)
+'	F.ODBC.Connection!Con.OpenCompanyConnection
+'	
+'	'IF DATATABLE EXISTS CLOSE IT
+	F.Intrinsic.Control.If(v.DataTable.BaseRouter.Exists)
+		F.Data.DataTable.Close("BaseRouter")
+	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.If(v.DataTable.CopyRouter.Exists)
+		F.Data.DataTable.Close("CopyRouter")
+	F.Intrinsic.Control.EndIf
+'	
+'	'CREATING A BROWSER SO USER CAN SELECT ROUTERS THAT HAVE SOMETHING IN THE USER FIELD 1
+'	F.Intrinsic.String.Split("Router*!*Description","*!*",V.Local.sCTitles)
+'	F.Intrinsic.String.Split("1000*!*1000", "*!*", v.Local.iWidths)
+'	
+'	F.Intrinsic.UI.Browser("BaseRouterBrowser","con","Select Router, Description_router from V_ROUTER_HEADER where SORT_1 = 'B'", V.Local.sCTitles, v.Local.iWidths, V.Local.sBrowerRet)
+'	
+'	F.Intrinsic.String.Split(v.Local.sBrowerRet,"*!*", v.Local.sBrowerRet)
+'	
+'	'checking if they cancel is so exit sub
+'	F.Intrinsic.Control.If(V.Local.sBrowerRet,=,V.Ambient.Cancel)
+'		F.ODBC.Connection!Con.Close
+'		Gui.F_RouterCopier.txtBaseRouterInfo.SetFocus
+'		Gui.F_RouterCopier.txtBaseRouterInfo.SelectAll
+'		F.Intrinsic.Control.ExitSub
+'	F.Intrinsic.Control.EndIf
+'	
+'	gui.F_RouterCopier.txtBaseRouterInfo.Text(V.Local.sBrowerRet(0))
+'	gui.F_RouterCopier.txtRouterDesc.Text(v.Local.sBrowerRet(1))
+	
+	
+	'CREATING DATATABLE AND FILLING IN THE GRID FOR DISPLAYBASEROUTER GRID
+	
+	F.Intrinsic.String.Build("Select LINE_ROUTER, LMO, PART_WC_OUTSIDE, OPERATION, SET_UP, RUN_TIME, UM_INVENTORY, RATE, DESC_RT_LINE from V_ROUTER_LINE where ROUTER = '{0}'", v.Screen.F_RouterCopier!txtBaseRouterInfo.Text.trim, v.Local.sSQL)
+	
+	
+	f.Data.DataTable.CreateFromSQL("BaseRouter", "con", v.Local.sSQL,True)
+	
+	'if Part does NOT have a router, force the user to select from browser that checks for Router Header User-1 = B
+	f.Intrinsic.Control.If(v.DataTable.BaseRouter.RowCount,=,0)
+		f.Intrinsic.UI.Msgbox("Part does NOT have a Router, Please Select from Base Router List (Router Header User-1 = B)")
+		'Clear Textbox
+		gui.F_RouterCopier.txtBaseRouterInfo.Text("")
+	f.Intrinsic.Control.Else
+		'load description from router header if not already populated by custom browser
+		F.Intrinsic.String.Build("Select DESCRIPTION_ROUTER from V_ROUTER_HEADER where ROUTER = '{0}'", v.Screen.F_RouterCopier!txtBaseRouterInfo.Text.trim, v.Local.sSQL)
+		f.ODBC.Connection!con.executeandreturn(v.Local.sSQL,v.Local.sTemp)
+		gui.F_RouterCopier.txtRouterDesc.Text(v.Local.sTemp)
+	f.Intrinsic.Control.EndIf
+	
+	
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.AddGridviewFromDatatable("BaseRouterGridView", "BaseRouter")
+	
+	'RENAMING THE COLUMN NAMES
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","LINE_ROUTER","Caption", "Sequence")
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","LMO","Caption", "Type")
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","PART_WC_OUTSIDE","Caption", "Part/WorkCenter")
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","Operation","Caption", "OP Code")
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","SET_UP","Caption", "Setup")
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","RUN_TIME","Caption", "Run Time")
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","UM_INVENTORY","Caption", "Unit")
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","RATE","Caption", "Rate")
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","DESC_RT_LINE","Caption", "Description")
+	
+	'BOLDING THE COLUMN NAMES
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","LINE_ROUTER","HeaderFontBold",True)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","LMO","HeaderFontBold",True)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","PART_WC_OUTSIDE","HeaderFontBold",True)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","Operation","HeaderFontBold",True)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","SET_UP","HeaderFontBold",True)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","RUN_TIME","HeaderFontBold",True)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","UM_INVENTORY","HeaderFontBold",True)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","RATE","HeaderFontBold",True)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","DESC_RT_LINE","HeaderFontBold",True)
+	
+	'SETTING THE MIN WIDTH
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","LINE_ROUTER","MinWidth",50)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","LMO","MinWidth",50)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","PART_WC_OUTSIDE","MinWidth",50)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","Operation","MinWidth",50)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","SET_UP","MinWidth",50)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","RUN_TIME","MinWidth",50)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","UM_INVENTORY","MinWidth",50)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","RATE","MinWidth",50)
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.SetColumnProperty("BaseRouterGridView","DESC_RT_LINE","MinWidth",50)
+	
+	'COLORING THE ODD ROWS
+	GUI.F_RouterCopier.GsGridControlDisplayBaserouter.SetGridviewProperty("BaseRouterGridView", "enableappearanceoddrow", True)
+	
+	'ADDING THE VIEW TO THE GRIDCONTROL
+	gui.F_RouterCopier.GsGridControlDisplayBaserouter.MainView("BaseRouterGridView")
+
+	F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry
+Program.Sub.LoadBaseRouterData.End
+
+Program.Sub.txtBaseRouterInfo_LostFocus.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare(String," ")
+	
+	
+	'call sub for loading router info based on textbox data entry value
+	f.Intrinsic.Control.CallSub(LoadBaseRouterData)
+
+	F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry
+Program.Sub.txtBaseRouterInfo_LostFocus.End
+
+Program.Sub.cmdSaveLine_Click.Start
+Program.Sub.cmdSaveLine_Click.End
+
+Program.Sub.cmdOpenNEWRouter_Click.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare(String," ")
+
+	
+	v.Local.sParams.Declare(String)
+	'launches Open Router Mode for NEW Router last created.
+	f.Intrinsic.String.Build("O!*!{0}",v.Global.sNEWRouter,v.Local.sParams)
+	f.Global.General.CallWrapperAsync(400000,v.Local.sParams)
+	F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry
+Program.Sub.cmdOpenNEWRouter_Click.End
